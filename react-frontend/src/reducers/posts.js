@@ -15,9 +15,9 @@ export default function posts(state=initialState, action) {
       return [...state, action.post];
 
     case 'UPDATE_POST':
-      let postToUpdate = postList[action.id]
-      postToUpdate.content = action.content;
-      postList.splice(action.id, 1, postToUpdate)
+      let postToUpdate = postList[action.index]
+      postToUpdate.content = action.post.content;
+      postList.splice(action.index, 1, postToUpdate)
       return postList
 
     case 'DELETE_POST':

@@ -38,7 +38,7 @@ class Posts extends Component{
     if(this.state.updatePostId === null) {
       this.props.addPost(this.state.text).then(this.resetForm);
     } else {
-      this.props.updatePost(this.state.updatePostId, this.state.text)
+      this.props.updatePost(this.state.updatePostId, this.state.text).then(this.resetForm)
     }
   }
 
@@ -99,7 +99,7 @@ const mapDispatchToProps = dispatch => {
       return dispatch(posts.addPost(content));
     },
     updatePost: (id, content) => {
-      dispatch(posts.updatePost(id, content));
+      return dispatch(posts.updatePost(id, content));
     },
     deletePost: (id) => {
       dispatch(posts.deletePost(id));

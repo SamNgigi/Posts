@@ -27,11 +27,21 @@ export const addPost = content => {
   }
 }
 
-export const updatePost = (id, content) => {
-  return {
-    type: 'UPDATE_POST',
-    id,
-    content
+export const updatePost = (index, content) => {
+  return (dispatch, getState) => {
+    let headers = {"Content-Type": "application/json"};
+    let body = JSON.stringify({content, });
+    let postId = getState().posts[index].id;
+
+    return fetch(`/api/posts/${postId}/`, {headers, method: "PUT", body})
+    .then(response => response.json())
+    .then(post => {
+      return dispatch({
+        type: 'UPDATE_POST',
+        post,
+        index
+      })
+    })
   }
 }
 
