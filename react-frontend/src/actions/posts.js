@@ -28,6 +28,7 @@ export const addPost = content => {
 }
 
 export const updatePost = (index, content) => {
+
   return (dispatch, getState) => {
     let headers = {"Content-Type": "application/json"};
     let body = JSON.stringify({content, });
@@ -45,9 +46,20 @@ export const updatePost = (index, content) => {
   }
 }
 
-export const deletePost = id => {
-  return {
-    type: 'DELETE_POST',
-    id
+export const deletePost = index => {
+
+  return (dispatch, getState) =>{
+    let headers = {"Content-Type": "application/json"};
+    let postId = getState().posts[index].id;
+
+    return fetch(`/api/posts/${postId}/`, {headers, method: "DELETE"})
+    .then(response =>{
+      if (response.ok) {
+        return dispatch({
+          type: 'DELETE_POST',
+          index
+        })
+      }
+    })
   }
 }

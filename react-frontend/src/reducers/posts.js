@@ -21,7 +21,7 @@ export default function posts(state=initialState, action) {
       return postList
 
     case 'DELETE_POST':
-      postList.splice(action.id, 1);
+      postList.splice(action.index, 1);
       return postList
 
     default:
