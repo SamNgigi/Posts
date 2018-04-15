@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+/*
+
+We use react-router-dom a library that is used for in application
+routing in react apps. Using it we can mount components of our
+choice on urls of our choice
+
+*/
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import Posts from './components/Posts';
+import NotFound from './components/404/NotFound';
+
+// import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Todos</h1>
-        </header>
-        <p className="App-intro">
-          A react front end app with django as the back end
-        </p>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Posts} />
+          <Route component={NotFound} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

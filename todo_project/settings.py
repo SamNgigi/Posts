@@ -135,7 +135,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "assets"),
+    os.path.join(BASE_DIR, "static"),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
@@ -151,13 +151,10 @@ CORS_ORIGIN_ALLOW_ALL = True
 """
 Webpack allows us to inject link and script tags for the
 bundles which webpack generates dynamically
-
-We tweak our STAT_FILE to use the 'prod' settings.
-We also change the staticfiles directory to use 'assets'
 """
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.prod.json'),
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
     }
 }
