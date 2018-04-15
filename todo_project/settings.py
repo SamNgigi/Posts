@@ -34,10 +34,10 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'knox',
     'post_app',
     'webpack_loader',
     'rest_framework',
-    'knox',
     'corsheaders',
     'bootstrap4',
 
@@ -122,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Africa/Nairobi'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -137,7 +137,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "assets"),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
@@ -153,15 +153,18 @@ CORS_ORIGIN_ALLOW_ALL = True
 """
 Webpack allows us to inject link and script tags for the
 bundles which webpack generates dynamically
+
+We tweak our STAT_FILE to use the 'prod' settings.
+We also change the staticfiles directory to use 'assets'
 """
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.prod.json'),
     }
 }
 
-# Rest Framework settings
+# Rest framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
 }
