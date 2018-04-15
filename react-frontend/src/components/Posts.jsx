@@ -41,7 +41,7 @@ class Posts extends Component{
 
   render(){
     return(
-      <Container>
+      <Container className="text-center">
         <h2>Welcome to Posts</h2>
         <br/>
         <h3>Add new posts</h3>
@@ -54,8 +54,8 @@ class Posts extends Component{
               onChange={(event) => this.setState({text: event.target.value})}
               required
             />
-            <Button onClick={this.resetForm}>Reset</Button>
-            <Button type="submit" className="m-1">Save</Button>
+            <Button outline className="my-1" block onClick={this.resetForm}>Reset</Button>
+            <Button outline color="success" className="my-1" block type="submit">Save</Button>
           </FormGroup>
         </Form>
 
@@ -66,8 +66,8 @@ class Posts extends Component{
             {this.props.posts.map((post, id) =>(
               <tr key={`post_${id}`}>
                 <td>{post.content}</td>
-                <td><Button className="m-1" onClick={()=>this.selectForEdit(id)}>edit</Button></td>
-                <td><Button onClick={()=> this.props.deletePost(id)}>delete</Button></td>
+                <td><Button outline color="primary" className="m-1" onClick={()=>this.selectForEdit(id)}>edit</Button></td>
+                <td><Button outline color="danger" onClick={()=> this.props.deletePost(id)}>delete</Button></td>
               </tr>
             ))}
           </tbody>
