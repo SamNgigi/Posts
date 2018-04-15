@@ -12,7 +12,7 @@ export default function posts(state=initialState, action) {
       return[...state, ...action.posts]
 
     case 'ADD_POST':
-      return [...state, action.post];
+      return [action.post, ...state];
 
     case 'UPDATE_POST':
       let postToUpdate = postList[action.index]
