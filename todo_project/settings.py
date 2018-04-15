@@ -47,17 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-"""
-Webpack allows us to inject link and script tags for the
-bundles which webpack generates dynamically
-"""
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
-    }
-}
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -157,3 +146,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # CORS_ORIGIN_WHITELIST = ['*']
 # CORS_ALLOW_HEADERS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+"""
+Webpack allows us to inject link and script tags for the
+bundles which webpack generates dynamically
+"""
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
+    }
+}

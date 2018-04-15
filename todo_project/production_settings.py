@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'webpack_loader',
     'rest_framework',
     'corsheaders',
     'bootstrap4',
@@ -145,3 +146,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # CORS_ORIGIN_WHITELIST = ['*']
 # CORS_ALLOW_HEADERS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+"""
+Webpack allows us to inject link and script tags for the
+bundles which webpack generates dynamically
+
+We tweak our STAT_FILE to use the 'prod' settings.
+We also change the staticfiles directory to use 'assets'
+"""
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.prod.json'),
+    }
+}
