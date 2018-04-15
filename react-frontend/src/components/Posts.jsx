@@ -15,6 +15,10 @@ import {
 
 class Posts extends Component{
 
+  componentDidMount() {
+    this.props.fetchPosts();
+  }
+
   state = {
     text:"",
     updatePostId: null,
@@ -89,6 +93,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchPosts: () =>{
+      dispatch(posts.fetchPosts())
+    },
     addPost: (content) => {
       dispatch(posts.addPost(content));
     },

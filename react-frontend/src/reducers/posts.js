@@ -1,13 +1,15 @@
-const initialState = [
-  // We empty our initialState list/array
-  // {content:"Initial test post."}
-];
+// We empty our initialState list/array
+// {content:"Initial test post."}
+const initialState = [];
 
 export default function posts(state=initialState, action) {
 
   let postList = state.slice()
 
   switch (action.type) {
+
+    case 'FETCH_POSTS':
+      return[...state, ...action.posts]
 
     case 'ADD_POST':
       return [...state, {content: action.content}];

@@ -13,13 +13,15 @@ choice on urls of our choice
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+
 import postApp from "./reducers";
 
 import Posts from './components/Posts';
 import NotFound from './components/404/NotFound';
 
-let store = createStore(postApp);
+let store = createStore(postApp, applyMiddleware(thunk));
 
 
 
