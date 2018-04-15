@@ -13,9 +13,17 @@ export const fetchPosts = () =>{
 }
 
 export const addPost = content => {
-  return {
-    type: 'ADD_POST',
-    content
+  return dispatch => {
+    let headers = {"Content-Type": "application/json"};
+    let body = JSON.stringify({content, });
+    return fetch("/api/posts/", {headers, method: "POST", body})
+    .then(response => response.json())
+    .then(post => {
+      return dispatch({
+        type: 'ADD_POST',
+        post
+      })
+    })
   }
 }
 
