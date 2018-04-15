@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'post_app',
     'webpack_loader',
     'rest_framework',
+    'knox',
     'corsheaders',
     'bootstrap4',
 
@@ -158,4 +159,9 @@ WEBPACK_LOADER = {
         'BUNDLE_DIR_NAME': 'bundles/',
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
     }
+}
+
+# Rest Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
 }
