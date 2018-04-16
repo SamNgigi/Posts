@@ -9,7 +9,12 @@ from .views import (
 )
 
 router = routers.DefaultRouter()
-router.register('posts', PostViewSet)
+
+"""
+We update our router registration to add a base_name. It is
+required if the viewset does not have a questyset attribute
+"""
+router.register('posts', PostViewSet, 'posts')
 
 urlpatterns = [
     url('^', include(router.urls)),
