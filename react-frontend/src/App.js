@@ -20,6 +20,7 @@ import postApp from "./reducers";
 
 import Posts from './components/Posts';
 import NotFound from './components/404/NotFound';
+import Login from './components/Login/Login'
 
 let store = createStore(postApp, applyMiddleware(thunk));
 
@@ -33,6 +34,7 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Posts} />
+          <Route exact path="/login" component={Login} />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
@@ -40,5 +42,5 @@ class App extends Component {
     );
   }
 }
-
+// is this working?
 export default App;
