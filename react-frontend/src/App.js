@@ -21,16 +21,18 @@ import postApp from "./reducers";
 
 import Posts from './components/Posts';
 import NotFound from './components/404/NotFound';
-import Login from './components/Login/Login'
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
 
 let store = createStore(postApp, applyMiddleware(thunk));
 
 class RootContainerComponent extends Component {
+
   componentDidMount(){
     this.props.loadUser();
   }
 
-  PrivateRoute = ({ component: ChildComponent, ...rest })=> {
+  PrivateRoute = ({ component: ChildComponent, ...rest }) => {
     return <Route {...rest} render={props => {
       if (this.props.auth.isLoading){
         return <em>Loading ...</em>;
@@ -48,9 +50,9 @@ class RootContainerComponent extends Component {
       <BrowserRouter>
         <Switch>
           <PrivateRoute exact path="/" component={Posts}/>
-            {/* <Route exact path="/register" component={Re} /> */}
-            <Route exact path="/login" component={Login} />
-            <Route  component={NotFound} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Route  component={NotFound} />
         </Switch>
       </BrowserRouter>
     );

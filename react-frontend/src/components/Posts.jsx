@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import { posts } from "../actions";
+import { posts, auth } from "../actions";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
@@ -47,6 +47,11 @@ class Posts extends Component{
       <Container className="text-center">
         <h2>Welcome to Posts</h2>
         <br/>
+        <div style={{textAlign: "right"}}>
+            {this.props.user.username} (
+              <a onClick={this.props.logout}>logout</a>
+            )
+        </div>
         <h3>Add new posts</h3>
 
         <Form onSubmit={this.submitPost}>
@@ -87,6 +92,7 @@ class Posts extends Component{
 const mapStateToProps = state => {
   return {
     posts: state.posts,
+    user: state.auth.user,
   }
 }
 
@@ -104,6 +110,7 @@ const mapDispatchToProps = dispatch => {
     deletePost: (id) => {
       dispatch(posts.deletePost(id));
     },
+    logout: () => dispatch(auth.logout()),
   }
 }
 
