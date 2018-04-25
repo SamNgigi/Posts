@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 
-import { Link, Redirect } from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
-import { auth } from "../../actions"
+import {auth} from "../../actions"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
@@ -15,15 +15,14 @@ import {
   Form,
   Input,
   Container,
-  Label,
+  Label
 } from 'reactstrap'
-
 
 class Login extends Component {
 
   state = {
     username: "",
-    password: "",
+    password: ""
   }
 
   onSubmit = event => {
@@ -31,45 +30,34 @@ class Login extends Component {
     this.props.register(this.state.username, this.state.password);
   }
 
-  render(){
-    if(this.props.isAuthenticated){
-      return <Redirect to="/" />
+  render() {
+    if (this.props.isAuthenticated) {
+      return <Redirect to="/"/>
     }
-    return (
-      <Container>
-        <Form onSubmit={this.onSubmit}>
-          <fieldset>
-            <legend>Register</legend>
-            {this.props.errors.length > 0 && (
-              <ul>
-                {this.props.errors.map(error => (
-                  <li key={error.field}>{error.message}</li>
-                ))}
-              </ul>
-            )}
-            <FormGroup>
-              <Label htmlFor="username">Username</Label>
-                <Input
-                  type="text"
-                  id="username"
-                  onChange={event => this.setState({username: event.target.value})}
-                />
-            </FormGroup>
-            <FormGroup>            <Label htmlFor="password">Password</Label>
-                <Input
-                  type="password"
-                  id="password"
-                  onChange={(event)=> this.setState({password: event.target.value})}
-                />
-            </FormGroup>
-            <Button type="submit">Login</Button>
-            <p className="mt-2">Do you have an account?
-              <Link to="/login">Login</Link>
-            </p>
-          </fieldset>
-        </Form>
-      </Container>
-    )
+    return (<Container>
+      <Form onSubmit={this.onSubmit}>
+        <fieldset>
+          <legend>Register</legend>
+          {
+            this.props.errors.length > 0 && (<ul>
+              {this.props.errors.map(error => (<li key={error.field}>{error.message}</li>))}
+            </ul>)
+          }
+          <FormGroup>
+            <Label htmlFor="username">Username</Label>
+            <Input type="text" id="username" onChange={event => this.setState({username: event.target.value})}/>
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="password">Password</Label>
+            <Input type="password" id="password" onChange={(event) => this.setState({password: event.target.value})}/>
+          </FormGroup>
+          <Button type="submit">Register</Button>
+          <p className="mt-2">Do you have an account?
+            <Link to="/login">Login</Link>
+          </p>
+        </fieldset>
+      </Form>
+    </Container>)
   }
 }
 
@@ -80,15 +68,12 @@ const mapStateToProps = state => {
       return {field, message: state.auth.errors[field]};
     });
   }
-  return {
-    errors,
-    isAuthenticated: state.auth.isAuthenticated
-  };
+  return {errors, isAuthenticated: state.auth.isAuthenticated};
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    register: (username, password) => dispatch(auth.register(username, password)),
+    register: (username, password) => dispatch(auth.register(username, password))
   };
 }
 
